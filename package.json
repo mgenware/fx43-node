@@ -1,0 +1,43 @@
+{
+  "name": "fx43",
+  "version": "0.0.1",
+  "description": "A smart task runner",
+  "main": "dist/lib/main.js",
+  "author": "Mgen (https://www.mgenware.com)",
+  "homepage": "https://github.com/mgenware/fx43",
+  "bugs": "https://github.com/mgenware/fx43/issues",
+  "keywords": [
+    "task runner"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mgenware/fx43.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/globby": "^6.1.0",
+    "@types/mocha": "*",
+    "@types/node": "*",
+    "@types/tmp": "^0.0.33",
+    "copy-dir": "^0.3.0",
+    "copyfiles": "*",
+    "mocha": "*",
+    "tmp": "^0.0.33",
+    "typescript": "*"
+  },
+  "scripts": {
+    "test": "yarn run compile && yarn run copy && mocha \"dist/test/*.js\"",
+    "dev_test": "mocha \"dist/test/*.js\"",
+    "build": "tsc && yarn test",
+    "compile": "tsc",
+    "dev": "tsc -w",
+    "copy": "copyfiles \"test/data/**/*.*\" \"dist\""
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "dependencies": {
+    "globby": "^6.1.0",
+    "write": "^1.0.3"
+  }
+}
