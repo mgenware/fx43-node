@@ -9,14 +9,9 @@ export async function start(srcDir: string, glob: string, cacheDir: string): Pro
   const fullSrcDir = nodepath.resolve(srcDir);
   const fullGlob = nodepath.join(fullSrcDir, glob);
   const allFiles = await Glob.match(fullGlob);
-  console.log('----- all files ------');
-  console.log(fullGlob, allFiles);
-  console.log('=====');
-  return await Promise.all(allFiles.map(async (absFile) => {
-    console.log('--- fullPath ', absFile);
-    const relFile = nodepath.relative(fullSrcDir, absFile);
-    console.log('--- relaPath', relFile);
 
+  return await Promise.all(allFiles.map(async (absFile) => {
+    const relFile = nodepath.relative(fullSrcDir, absFile);
     const cachePath = nodepath.join(cacheDir, relFile);
 
     const realTs = await Getter.getAsync(absFile);
@@ -35,7 +30,6 @@ export async function start(srcDir: string, glob: string, cacheDir: string): Pro
       return relFile;
     }
     return null;
-  }));
   })).then((results) => {
     return results.filter((f) => f !== null);
   });
