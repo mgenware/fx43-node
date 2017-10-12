@@ -1,8 +1,10 @@
 import * as main from '../lib/main';
 import * as tmp from 'tmp';
-//import * as assert from 'assert';
+import * as assert from 'assert';
 import * as nodepath from 'path';
 const copyDir = require('copy-dir') as any;
+
+const SORTED_FILES = ['a.md', 'dir/b.md'].sort();
 
 function newTmpDir(): string {
   return tmp.dirSync().name;
@@ -18,7 +20,7 @@ describe('Main', () => {
 
   it('All files should be considered new', async () => {
     const files = await main.start(tmpDir, '/**/*.md', cacheDir);
-    console.log(files);
+    assert.deepEqual(files.sort(), SORTED_FILES);
   });
 
 });

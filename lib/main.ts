@@ -20,8 +20,12 @@ export async function start(srcDir: string, glob: string, cacheDir: string): Pro
     const cachePath = nodepath.join(cacheDir, relFile);
 
     const realTs = await Getter.getAsync(absFile);
-    const cachedTs = await Reader.readAsync(cachePath);
-    if (realTs === null) {
+    let cachedTs: string|null = null;
+    try {
+      cachedTs = await Reader.readAsync(cachePath);
+    } catch { } // tslint:disable-line
+
+    if (!realTs) {
       throw new Error(`Error getting lastModTime of file "${absFile}"`);
     }
     if (cachedTs !== realTs) {

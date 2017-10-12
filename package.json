@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "globby": "^6.1.0",
+    "mkdirp-promise": "^5.0.1",
     "write": "^1.0.3"
   }
 }
