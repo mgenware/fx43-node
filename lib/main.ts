@@ -3,6 +3,7 @@ import Reader from './internal/reader';
 import Writer from './internal/writer';
 import Getter from './internal/getter';
 import Config from './internal/config';
+import CacheName from './internal/cacheName';
 import * as nodepath from 'path';
 
 export async function start(srcDir: string, glob: string, cacheDir: string): Promise<Array<string|null>> {
@@ -12,13 +13,13 @@ export async function start(srcDir: string, glob: string, cacheDir: string): Pro
 
   return await Promise.all(allFiles.map(async (absFile) => {
     const relFile = nodepath.relative(fullSrcDir, absFile);
-    const cachePath = nodepath.join(cacheDir, relFile);
+    const cachePath = CacheName.getCacheFileName(nodepath.join(cacheDir, relFile));
 
     const realTs = await Getter.getAsync(absFile);
     let cachedTs: string|null = null;
     try {
       cachedTs = await Reader.readAsync(cachePath);
-    } catch { } // tslint:disable-line
+    } catch (err) { } // tslint:disable-line
 
     if (!realTs) {
       throw new Error(`Error getting lastModTime of file "${absFile}"`);

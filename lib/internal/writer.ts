@@ -1,6 +1,5 @@
 import { promisify } from 'util';
 import * as fs from 'fs';
-import CacheName from './cacheName';
 import Config from './config';
 import * as nodepath from 'path';
 const mkdirp = require('mkdirp-promise') as any;
@@ -12,6 +11,6 @@ export default class Writer {
     const baseDir = nodepath.dirname(path);
     await mkdirp(baseDir);
     const str = JSON.stringify(config);
-    await writeFileAsync(CacheName.getCacheFileName(path), str, 'utf8');
+    await writeFileAsync(path, str, 'utf8');
   }
 }
