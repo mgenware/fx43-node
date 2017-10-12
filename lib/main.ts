@@ -36,4 +36,7 @@ export async function start(srcDir: string, glob: string, cacheDir: string): Pro
     }
     return null;
   }));
+  })).then((results) => {
+    return results.filter((f) => f !== null);
+  });
 }
