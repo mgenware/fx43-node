@@ -9,11 +9,12 @@ import * as nodepath from 'path';
 export async function start(srcDir: string, glob: string, cacheDir: string): Promise<Array<string|null>> {
   const fullSrcDir = nodepath.resolve(srcDir);
   const fullGlob = nodepath.join(fullSrcDir, glob);
+  const fullCacheDir = nodepath.resolve(cacheDir);
   const allFiles = await Glob.match(fullGlob);
 
   return await Promise.all(allFiles.map(async (absFile) => {
     const relFile = nodepath.relative(fullSrcDir, absFile);
-    const cachePath = CacheName.getCacheFileName(nodepath.join(cacheDir, relFile));
+    const cachePath = CacheName.getCacheFileName(nodepath.join(fullCacheDir, relFile));
 
     const realTs = await Getter.getAsync(absFile);
     let cachedTs: string|null = null;
