@@ -6,27 +6,29 @@ import Config from './internal/config';
 import * as nodepath from 'path';
 
 export async function start(srcDir: string, glob: string, cacheDir: string): Promise<Array<string|null>> {
-  const fullGlob = nodepath.join(srcDir, glob);
+  const fullSrcDir = nodepath.resolve(srcDir);
+  const fullGlob = nodepath.join(fullSrcDir, glob);
   const allFiles = await Glob.match(fullGlob);
   console.log('----- all files ------');
   console.log(fullGlob, allFiles);
   console.log('=====');
-  return await Promise.all(allFiles.map(async (file) => {
-    const fullPath = nodepath.join(srcDir, file);
-    console.log('--- fullPath ', fullPath);
+  return await Promise.all(allFiles.map(async (absFile) => {
+    console.log('--- fullPath ', absFile);
+    const relFile = nodepath.relative(fullSrcDir, absFile);
+    console.log('--- relaPath', relFile);
 
-    const cachePath = nodepath.join(cacheDir, file);
+    const cachePath = nodepath.join(cacheDir, relFile);
 
-    const realTs = await Getter.getAsync(fullPath);
+    const realTs = await Getter.getAsync(absFile);
     const cachedTs = await Reader.readAsync(cachePath);
     if (realTs === null) {
-      throw new Error(`Error getting lastModTime of file "${fullPath}"`);
+      throw new Error(`Error getting lastModTime of file "${absFile}"`);
     }
     if (cachedTs !== realTs) {
       const config = new Config();
       config.lastMod = realTs;
       await Writer.writeAsync(cachePath, config);
-      return file;
+      return relFile;
     }
     return null;
   }));
