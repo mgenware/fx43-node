@@ -1,8 +1,9 @@
 {
   "name": "fx43",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "A smart task runner",
   "main": "dist/lib/main.js",
+  "types": "dist/lib/main.d.ts",
   "author": "Mgen (https://www.mgenware.com)",
   "homepage": "https://github.com/mgenware/fx43",
   "bugs": "https://github.com/mgenware/fx43/issues",
@@ -31,6 +32,7 @@
     "build": "tsc && yarn test",
     "compile": "tsc",
     "dev": "tsc -w",
+    "prepublishOnly": "yarn run test",
     "copy": "copyfiles \"test/data/**/*.*\" \"dist\""
   },
   "engines": {
