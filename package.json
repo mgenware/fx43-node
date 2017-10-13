@@ -1,6 +1,6 @@
 {
   "name": "fx43",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A smart task runner",
   "main": "dist/lib/main.js",
   "types": "dist/lib/main.d.ts",
