@@ -1,14 +1,14 @@
 {
   "name": "fx43",
-  "version": "0.0.6",
-  "description": "A smart task runner",
+  "version": "0.0.7",
+  "description": "Detecting changed files via caching file modification time",
   "main": "dist/lib/main.js",
   "types": "dist/lib/main.d.ts",
   "author": "Mgen (https://www.mgenware.com)",
   "homepage": "https://github.com/mgenware/fx43",
   "bugs": "https://github.com/mgenware/fx43/issues",
   "keywords": [
-    "task runner"
+    "file changes", "file system"
   ],
   "repository": {
     "type": "git",
