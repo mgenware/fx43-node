@@ -6,7 +6,7 @@ import Config from './internal/config';
 import CacheName from './internal/cacheName';
 import * as nodepath from 'path';
 
-export async function start(srcDir: string, glob: string, cacheDir: string): Promise<Array<string|null>> {
+export async function start(srcDir: string, glob: string, cacheDir: string): Promise<string[]> {
   const fullSrcDir = nodepath.resolve(srcDir);
   const fullGlob = nodepath.join(fullSrcDir, glob);
   const fullCacheDir = nodepath.resolve(cacheDir);
@@ -33,6 +33,6 @@ export async function start(srcDir: string, glob: string, cacheDir: string): Pro
     }
     return null;
   })).then((results) => {
-    return results.filter((f) => f !== null);
+    return results.filter((f) => f !== null) as string[];
   });
 }
