@@ -28,7 +28,9 @@ function testWithTmpDir(tmpDir: string, title: string) {
   describe(title, () => {
     copyDir.sync(dataDir, tmpDir);
     const cacheDir = newTmpDir();
+    // tslint:disable-next-line: no-console
     console.log(`Data  dir: ${tmpDir}`);
+    // tslint:disable-next-line: no-console
     console.log(`Cache dir: ${cacheDir}`);
 
     it('All files should be considered new', async () => {
@@ -49,6 +51,10 @@ function testWithTmpDir(tmpDir: string, title: string) {
       await touchAsync(nodepath.join(tmpDir, 'dir/b.md'));
       const files = await main.start(tmpDir, '/**/*.md', cacheDir);
       assert.deepEqual(files, []);
+    });
+    it('Ignore cache', async () => {
+      const files = await main.start(tmpDir, '/**/*.md', cacheDir, true);
+      assert.deepEqual(files.sort(), SORTED_FILES);
     });
   });
 }

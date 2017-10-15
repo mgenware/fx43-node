@@ -6,11 +6,20 @@ import Config from './internal/config';
 import CacheName from './internal/cacheName';
 import * as nodepath from 'path';
 
-export async function start(srcDir: string, glob: string, cacheDir: string): Promise<string[]> {
+export async function start(
+  srcDir: string,
+  glob: string,
+  cacheDir: string,
+  ignoreCache: boolean = false,
+): Promise<string[]> {
   const fullSrcDir = nodepath.resolve(srcDir);
   const fullGlob = nodepath.join(fullSrcDir, glob);
   const fullCacheDir = nodepath.resolve(cacheDir);
   const allFiles = await Glob.match(fullGlob);
+
+  if (ignoreCache) {
+    return allFiles.map((file) => nodepath.relative(fullSrcDir, file));
+  }
 
   return await Promise.all(allFiles.map(async (absFile) => {
     const relFile = nodepath.relative(fullSrcDir, absFile);
