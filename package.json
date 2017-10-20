@@ -1,6 +1,6 @@
 {
   "name": "fx43",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Detecting changed files via caching file modification time",
   "main": "dist/lib/main.js",
   "types": "dist/lib/main.d.ts",
