@@ -43,26 +43,26 @@ function testWithTmpDir(tmpDir: string, title: string) {
       assert.deepEqual(files, []);
     });
     it('Touch a file', async () => {
-      await delayAsync(500);
+      await delayAsync(1100);
       await touchAsync(nodepath.join(tmpDir, 'dir/b.md'));
       const files = await main.start(tmpDir, '/**/*.md', cacheDir);
       assert.deepEqual(files.sort(), ['dir/b.md'].sort());
-    }).timeout(2000);
+    }).timeout(1500);
     it('Touch an irrelevant file', async () => {
-      await delayAsync(500);
+      await delayAsync(1100);
       await touchAsync(nodepath.join(tmpDir, 'a.txt'));
       const files = await main.start(tmpDir, '/**/*.md', cacheDir);
       assert.deepEqual(files, []);
-    });
+    }).timeout(1500);
     it('Create files', async () => {
-      await delayAsync(500);
+      await delayAsync(1100);
       await touchAsync(nodepath.join(tmpDir, 'a.txt'));
       await touchAsync(nodepath.join(tmpDir, 'new1.txt'));
       await touchAsync(nodepath.join(tmpDir, 'new1.md'));
       await touchAsync(nodepath.join(tmpDir, 'new2.md'));
       const files = await main.start(tmpDir, '/**/*.md', cacheDir);
       assert.deepEqual(files.sort(), ['new1.md', 'new2.md']);
-    });
+    }).timeout(1500);
     it('Ignore cache', async () => {
       const files = await main.start(tmpDir, '/**/*.md', cacheDir, true);
       assert.deepEqual(files.sort(), SORTED_FILES_NEW);
