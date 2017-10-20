@@ -1,6 +1,6 @@
 {
   "name": "fx43",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Detecting changed files via caching file modification time",
   "main": "dist/lib/main.js",
   "types": "dist/lib/main.d.ts",
@@ -36,7 +36,7 @@
     "copy": "copyfiles \"test/data/**/*.*\" \"dist\""
   },
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=8.0.0"
   },
   "dependencies": {
     "globby": "^6.1.0",

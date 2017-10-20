@@ -1,6 +1,6 @@
 # fx43-node
 
-[![Build Status](https://travis-ci.org/mgenware/fx43.svg?branch=master)](http://travis-ci.org/mgenware/fx43)
+[![Build Status](https://travis-ci.org/mgenware/fx43-node.svg?branch=master)](http://travis-ci.org/mgenware/fx43-node)
 [![npm version](https://badge.fury.io/js/fx43.svg)](https://badge.fury.io/js/fx43)
 [![Node.js Version](http://img.shields.io/node/v/fx43.svg)](https://nodejs.org/en/)
 
