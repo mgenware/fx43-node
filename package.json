@@ -27,13 +27,16 @@
     "typescript": "*"
   },
   "scripts": {
-    "test": "yarn run compile && yarn run copy && mocha \"dist/test/*.js\"",
+    "test": "yarn run clean && yarn run compile && yarn run lint && yarn run copy && mocha \"dist/test/*.js\"",
     "dev_test": "mocha \"dist/test/*.js\"",
-    "build": "tsc && yarn test",
+    "build": "yarn test",
     "compile": "tsc",
-    "dev": "tsc -w",
+    "dev": "yarn run clean && tsc -w",
     "prepublishOnly": "yarn run test",
-    "copy": "copyfiles \"test/data/**/*.*\" \"dist\""
+    "lint": "tslint --project .",
+    "copy": "copyfiles \"test/data/**/*.*\" \"dist\"",
+    "clean:dist": "rm -rf dist",
+    "clean": "npm run clean:dist"
   },
   "engines": {
     "node": ">=8.0.0"
