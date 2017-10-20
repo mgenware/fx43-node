@@ -8,7 +8,8 @@
   "homepage": "https://github.com/mgenware/fx43",
   "bugs": "https://github.com/mgenware/fx43/issues",
   "keywords": [
-    "file changes", "file system"
+    "file changes",
+    "file system"
   ],
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
     "copyfiles": "*",
     "mocha": "*",
     "tmp": "^0.0.33",
+    "tslint": "^5.7.0",
     "typescript": "*"
   },
   "scripts": {
