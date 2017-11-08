@@ -2,7 +2,7 @@
 const fx43 = require('..');
 
 async function printChangedFiles() {
-  const files = await fx43.start('./data', '**/*.html', './.cache');
+  const files = await fx43.start('./data', ['.myignore'], './.cache');
   console.log(`${files.length} file(s) changed.\n${files}`);
 }
 
