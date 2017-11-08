@@ -17,7 +17,6 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@types/globby": "^6.1.0",
     "@types/mocha": "*",
     "@types/node": "*",
     "@types/tmp": "^0.0.33",
@@ -44,7 +43,7 @@
     "node": ">=8.0.0"
   },
   "dependencies": {
-    "globby": "^6.1.0",
+    "ignore-walk": "^3.0.1",
     "mkdirp-promise": "^5.0.1",
     "write": "^1.0.3"
   }
