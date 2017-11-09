@@ -10,10 +10,23 @@ export default class Glob {
       throw new Error('path cannot be empty');
     }
 
+    let ignoreSet: Set<string>|null = null;
+    if (ignoreFiles) {
+      ignoreSet = new Set<string>(ignoreFiles);
+    }
+
     const fullPath = nodepath.resolve(path);
     return walkAsync({
       ignoreFiles: ignoreFiles || [],
       path: fullPath,
+    }).then((files: string[]) => {
+      if (ignoreSet !== null) {
+        const nonEmptySet = ignoreSet as Set<string>;
+        return files.filter((f) => !nonEmptySet.has(f));
+      }
+      return files;
+    }).then((files: string[]) => {
+      return files.map((file) => nodepath.join(path, file));
     });
   }
 }

@@ -15,7 +15,6 @@ export async function start(
   const fullSrcDir = nodepath.resolve(rootDir);
   const fullCacheDir = nodepath.resolve(cacheDir);
   const allFiles = await Glob.match(fullSrcDir, ignoreFiles);
-  console.log('--- all ', allFiles);
 
   if (ignoreCache) {
     return allFiles.map((file) => nodepath.relative(fullSrcDir, file));

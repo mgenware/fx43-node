@@ -30,7 +30,12 @@ yarn test
 ```javascript
 const fx43 = require('fx43');
 
-fx43.start(srcDir: string, glob: string, cacheDir: string, ignoreCache?: boolean): Promise<string[]>;
+fx43.start(
+  rootDir: string,               // the project directory
+  ignoreFiles: string[],         // list of ignore files(NOT ignored files, but ignore files like ".gitignore")
+  cacheDir: string,              // where the cache saves
+  ignoreCache: boolean = false,  // ignores cache and forces update? defaults to false
+): Promise<string[]>;
 ```
 
 ## Example
@@ -44,7 +49,13 @@ Suppose you have some files in a directory named `data`:
     lib.js
 ```
 
-You need to process all changed `.js` files.
+You need to process all changed `.js` files. You need to define a ignore file like `.gitignore` though name can be customized, for example, `.myignore`:
+```
+# ignore html and css files
+*.html
+*.css
+```
+
 ```javascript
 // Node.js 8+
 const fx43 = require('fx43');

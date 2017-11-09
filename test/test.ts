@@ -6,7 +6,7 @@ import { promisify } from 'util';
 import * as fs from 'fs';
 const copyDir = require('copy-dir') as any;
 
-const IGNORE_FILES = ['.myignore'];
+const IGNORE_FILES = ['ignoreFile.txt'];
 const SORTED_FILES = ['a.md', 'dir/b.md'].sort();
 const SORTED_FILES_NEW = ['a.md', 'dir/b.md', 'new1.md', 'new2.md'].sort();
 const writeFileAsync = promisify(fs.writeFile);
