@@ -49,13 +49,17 @@ Suppose you have some files in a directory named `data`:
     lib.js
 ```
 
-You need to process all changed `.js` files. You need to define a ignore file like `.gitignore` though name can be customized, for example, `.myignore`:
+You need to process all changed `.js` files. In this case, you should define an ignore file like `.gitignore`, for example, `.myignore` with following contents:
 ```
+# .myignore
+# put this file to the root folder of project
+
 # ignore html and css files
 *.html
 *.css
 ```
 
+Then call fx43 APIs like this:
 ```javascript
 // Node.js 8+
 const fx43 = require('fx43');
