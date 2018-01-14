@@ -63,8 +63,9 @@ const fx43 = require('fx43');
 async function printChangedFiles() {
   const files = await fx43.start(
     './data',       // source dir: data
-    '**/*.js',      // selected files: all .js
-    './.cache');    // cache dir: .cache (all selected files' modification time will be saved inside this dir)
+    ['.myignore'],  // ignore file
+    './.cache',     // cache dir: .cache (all selected files' modification time will be saved inside this dir)
+  );
   console.log(`${files.length} file(s) changed.\n${files}`);
 }
 
