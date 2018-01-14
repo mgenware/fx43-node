@@ -16,7 +16,7 @@ function newTmpDir(): string {
 }
 function delayAsync(t: any): Promise<any> {
   return new Promise((resolve) => {
-      setTimeout(resolve, t);
+    setTimeout(resolve, t);
   });
 }
 
