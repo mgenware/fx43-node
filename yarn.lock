@@ -354,6 +354,10 @@ block-stream@*:
   dependencies:
     inherits "~2.0.0"
 
+bluebird@^3.5.1:
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.1.tgz#d9551f9de98f1fcda1e683d17ee91a0602ee2eb9"
+
 boom@2.x.x:
   version "2.10.1"
   resolved "https://registry.yarnpkg.com/boom/-/boom-2.10.1.tgz#39c8918ceff5799f83f9492a848f625add0c766f"
@@ -904,6 +908,12 @@ fstream@^1.0.0, fstream@^1.0.10, fstream@^1.0.2:
 function-bind@^1.0.2, function-bind@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
+
+fx58-node@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/fx58-node/-/fx58-node-1.0.1.tgz#d1b5230d8cd8a70a4a70bf1323fb3055ae39524b"
+  dependencies:
+    m-fs "^1.0.1"
 
 gauge@~2.7.3:
   version "2.7.4"
@@ -1754,6 +1764,14 @@ ltcdr@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/ltcdr/-/ltcdr-2.2.1.tgz#5ab87ad1d4c1dab8e8c08bbf037ee0c1902287cf"
 
+m-fs@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/m-fs/-/m-fs-1.0.1.tgz#62c2126a38c71842f48f3124d7dec68aae420777"
+  dependencies:
+    bluebird "^3.5.1"
+    mkdirp-promise "^5.0.1"
+    node-filter-async "^0.0.3"
+
 make-dir@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/make-dir/-/make-dir-1.1.0.tgz#19b4369fe48c116f53c2af95ad102c0e39e85d51"
@@ -1865,6 +1883,12 @@ nested-error-stacks@^2.0.0:
   resolved "https://registry.yarnpkg.com/nested-error-stacks/-/nested-error-stacks-2.0.0.tgz#98b2ffaefb4610fa3936f1e71435d30700de2840"
   dependencies:
     inherits "~2.0.1"
+
+node-filter-async@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/node-filter-async/-/node-filter-async-0.0.3.tgz#130956768cf8d19c51f629977700c6758b2dc91d"
+  dependencies:
+    bluebird "^3.5.1"
 
 node-int64@^0.4.0:
   version "0.4.0"

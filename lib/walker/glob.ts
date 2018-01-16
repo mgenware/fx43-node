@@ -5,7 +5,7 @@ const walk = require('ignore-walk');
 const walkAsync = util.promisify(walk);
 
 export default class Glob {
-  static async match(path: string, ignoreFiles: string[]): Promise<string[]> {
+  static async matchAsync(path: string, ignoreFiles: string[]): Promise<string[]> {
     if (!path) {
       throw new Error('path cannot be empty');
     }
