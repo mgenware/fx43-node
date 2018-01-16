@@ -43,7 +43,7 @@
   },
   "dependencies": {
     "@types/jest": "^22.0.1",
-    "fx58-node": "^1.0.1",
+    "fx58-node": "^1.0.4",
     "ignore-walk": "^3.0.1",
     "jest": "^22.1.1",
     "mkdirp-promise": "^5.0.1",

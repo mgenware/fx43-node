@@ -909,9 +909,9 @@ function-bind@^1.0.2, function-bind@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
 
-fx58-node@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/fx58-node/-/fx58-node-1.0.1.tgz#d1b5230d8cd8a70a4a70bf1323fb3055ae39524b"
+fx58-node@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/fx58-node/-/fx58-node-1.0.4.tgz#8dbdf67956beee00224ffc757449ae5b566f28c5"
   dependencies:
     m-fs "^1.0.1"
 
