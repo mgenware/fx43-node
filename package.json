@@ -17,26 +17,24 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@types/mocha": "*",
     "@types/node": "*",
     "@types/tmp": "^0.0.33",
     "copy-dir": "^0.3.0",
     "copyfiles": "*",
     "cpy": "^6.0.0",
-    "mocha": "*",
     "tmp": "^0.0.33",
     "tslint": "^5.7.0",
     "typescript": "*"
   },
   "scripts": {
-    "test": "yarn run clean && yarn run compile && yarn run lint && yarn run copy && mocha \"dist/test/*.js\"",
-    "dev_test": "mocha \"dist/test/*.js\"",
+    "test": "yarn run clean && yarn run compile && yarn run lint && yarn run copy && yarn run dev_test",
+    "dev_test": "jest",
     "build": "yarn test",
     "compile": "tsc",
     "dev": "yarn run clean && tsc -w",
     "prepublishOnly": "yarn run test",
-    "lint": "tslint --project .",
-    "copy": "copyfiles \"test/data/**/*.*\" \"dist\"",
+    "lint": "tslint --project tsconfig.json --config tslint.json",
+    "copy": "copyfiles \"tests/data/**/*.*\" \"dist\"",
     "clean:dist": "rm -rf dist",
     "clean": "npm run clean:dist"
   },
@@ -44,7 +42,9 @@
     "node": ">=8.0.0"
   },
   "dependencies": {
+    "@types/jest": "^22.0.1",
     "ignore-walk": "^3.0.1",
+    "jest": "^22.1.1",
     "mkdirp-promise": "^5.0.1",
     "write": "^1.0.3"
   }
