@@ -27,8 +27,8 @@
     "typescript": "*"
   },
   "scripts": {
-    "test": "yarn run clean && yarn run compile && yarn run lint && yarn run copy && yarn run dev_test",
-    "dev_test": "jest",
+    "test": "yarn run clean && yarn run compile && yarn run lint && yarn run dev-test",
+    "dev-test": "yarn run copy && jest",
     "build": "yarn test",
     "compile": "tsc",
     "dev": "yarn run clean && tsc -w",
@@ -48,5 +48,11 @@
     "jest": "^22.1.1",
     "mkdirp-promise": "^5.0.1",
     "write": "^1.0.3"
-  }
+  },
+  "files":[
+    "dist/lib",
+    ".gitignore",
+    "README.md",
+    "package.json"
+  ]
 }
