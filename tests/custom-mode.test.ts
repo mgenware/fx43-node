@@ -5,7 +5,6 @@ import { promisify } from 'util';
 import * as fs from 'fs';
 const copyDir = require('copy-dir') as any;
 
-const IGNORE_FILES = ['ignoreFile.txt'];
 const SORTED_FILES = ['a.md', 'dir/b.md'].sort();
 const SORTED_FILES_NEW = ['a.md', 'dir/b.md', 'new1.md', 'new2.md'].sort();
 const writeFileAsync = promisify(fs.writeFile);
@@ -18,12 +17,11 @@ function delayAsync(t: any): Promise<any> {
     setTimeout(resolve, t);
   });
 }
-
 async function touchAsync(path: string) {
   await writeFileAsync(path, ' ');
 }
 
-const dataDir = nodepath.join(__dirname, 'data');
+const dataDir = nodepath.join(__dirname, 'data/custom-mode');
 
 function testWithTmpDir(tmpDir: string, cacheDir: string, title: string) {
   copyDir.sync(dataDir, tmpDir);
@@ -32,25 +30,32 @@ function testWithTmpDir(tmpDir: string, cacheDir: string, title: string) {
   // tslint:disable-next-line: no-console
   console.log(`Cache dir: ${cacheDir}`);
 
+  async function startAsync(ignoreCache: boolean = false): Promise<string[]> {
+    return await main.startCustomModeAsync(tmpDir, cacheDir, ignoreCache, (file) => {
+      // ignore all .txt files
+      return nodepath.extname(file).toLowerCase() !== '.txt';
+    });
+  }
+
   describe(title, () => {
     test('All files should be considered new', async () => {
-      const files = await main.start(tmpDir, IGNORE_FILES, cacheDir);
+      const files = await startAsync();
       expect(files.sort()).toEqual(SORTED_FILES);
     });
     test('Nothing new', async () => {
-      const files = await main.start(tmpDir, IGNORE_FILES, cacheDir);
+      const files = await startAsync();
       expect(files).toEqual([]);
     });
     test('Touch a file', async () => {
       await delayAsync(1100);
       await touchAsync(nodepath.join(tmpDir, 'dir/b.md'));
-      const files = await main.start(tmpDir, IGNORE_FILES, cacheDir);
+      const files = await startAsync();
       expect(files.sort()).toEqual(['dir/b.md'].sort());
     });
     test('Touch an irrelevant file', async () => {
       await delayAsync(1100);
       await touchAsync(nodepath.join(tmpDir, 'a.txt'));
-      const files = await main.start(tmpDir, IGNORE_FILES, cacheDir);
+      const files = await startAsync();
       expect(files).toEqual([]);
     });
     test('Create files', async () => {
@@ -59,11 +64,11 @@ function testWithTmpDir(tmpDir: string, cacheDir: string, title: string) {
       await touchAsync(nodepath.join(tmpDir, 'new1.txt'));
       await touchAsync(nodepath.join(tmpDir, 'new1.md'));
       await touchAsync(nodepath.join(tmpDir, 'new2.md'));
-      const files = await main.start(tmpDir, IGNORE_FILES, cacheDir);
+      const files = await startAsync();
       expect(files.sort()).toEqual(['new1.md', 'new2.md']);
     });
     test('Ignore cache', async () => {
-      const files = await main.start(tmpDir, IGNORE_FILES, cacheDir, true);
+      const files = await startAsync(true);
       expect(files.sort()).toEqual(SORTED_FILES_NEW);
     });
   });
