@@ -33,8 +33,8 @@ Fx43 offers 3 ways to track files:
 
 ### All files mode
 ```js
-import { startAllFilesModeAsync } from 'fx43-node';
-// ES5: const startAllFilesModeAsync = require('fx43-node').startAllFilesModeAsync;
+import { startAllFilesModeAsync } from 'fx43';
+// ES5: const startAllFilesModeAsync = require('fx43').startAllFilesModeAsync;
 
 startAllFilesModeAsync(
   rootDirectory: string,
@@ -45,8 +45,8 @@ startAllFilesModeAsync(
 
 ### Ignore file mode
 ```js
-import { startIgnoreFileModeAsync } from 'fx43-node';
-// ES5: const startIgnoreFileModeAsync = require('fx43-node').startIgnoreFileModeAsync;
+import { startIgnoreFileModeAsync } from 'fx43';
+// ES5: const startIgnoreFileModeAsync = require('fx43').startIgnoreFileModeAsync;
 
 startIgnoreFileModeAsync(
   rootDirectory: string,
@@ -58,8 +58,8 @@ startIgnoreFileModeAsync(
 
 ### Custom mode
 ```js
-import { startCustomModeAsync } from 'fx43-node';
-// ES5: const startCustomModeAsync = require('fx43-node').startCustomModeAsync;
+import { startCustomModeAsync } from 'fx43';
+// ES5: const startCustomModeAsync = require('fx43').startCustomModeAsync;
 
 startCustomModeAsync(
   rootDirectory: string,
@@ -83,10 +83,10 @@ Suppose you have some files in a directory named `data`:
     lib.js
 ```
 
-You need to process all changed `.js` files. In this case, you can use ignore file mode. Define an ignore file like `.gitignore`, for example, `.myignore` with following contents:
+You need to track all changed `.js` files. In this case, you can use ignore file mode. Define an ignore file like `.gitignore`, for example, `.myignore` with the following contents:
 ```
 # .myignore
-# put this file to the root folder of project
+# put this file to the root folder of the project
 
 # ignore html and css files
 *.html
@@ -95,7 +95,7 @@ You need to process all changed `.js` files. In this case, you can use ignore fi
 
 Then call fx43 APIs like this:
 ```javascript
-import { startIgnoreFileModeAsync } from 'fx43-node';
+import { startIgnoreFileModeAsync } from 'fx43';
 
 async function printChangedFiles() {
   const files = await startIgnoreFileModeAsync('./data', ['.myignore'], './.cache');
