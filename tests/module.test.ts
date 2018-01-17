@@ -4,6 +4,7 @@ import * as fs from 'fs';
 test('Check members', () => {
   expect(typeof main.startIgnoreFileModeAsync).toBe('function');
   expect(typeof main.startCustomModeAsync).toBe('function');
+  expect(typeof main.startAllFilesModeAsync).toBe('function');
 });
 
 test('Check type definition file', () => {

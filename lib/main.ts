@@ -18,12 +18,21 @@ export async function startIgnoreFileModeAsync(
   return await internalStart(rootDirectory, changedFiles, cacheDirectory, ignoreCache);
 }
 
+export async function startAllFilesModeAsync(
+  rootDirectory: string,
+  cacheDirectory: string,
+  ignoreCache: boolean = false,
+): Promise<string[]> {
+  const changedFiles = await CustomWalker(rootDirectory, null, null);
+  return await internalStart(rootDirectory, changedFiles, cacheDirectory, ignoreCache);
+}
+
 export async function startCustomModeAsync(
   rootDirectory: string,
   cacheDirectory: string,
   ignoreCache: boolean = false,
-  fileFilter: ((name: string) => boolean) | null = null,
-  dirFilter: ((name: string) => boolean) | null = null,
+  fileFilter: ((fileName: string) => boolean) | null = null,
+  dirFilter: ((dirName: string) => boolean) | null = null,
 ): Promise<string[]> {
   const changedFiles = await CustomWalker(rootDirectory, fileFilter, dirFilter);
   return await internalStart(rootDirectory, changedFiles, cacheDirectory, ignoreCache);
