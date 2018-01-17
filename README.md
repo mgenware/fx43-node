@@ -4,7 +4,7 @@
 [![npm version](https://badge.fury.io/js/fx43.svg)](https://badge.fury.io/js/fx43)
 [![Node.js Version](http://img.shields.io/node/v/fx43.svg)](https://nodejs.org/en/)
 
-Detecting changed files via caching file modification time
+Detecting changed files via caching file modification time.
 
 ## Installation
 ```sh
@@ -25,16 +25,49 @@ yarn test
 ```
 
 # Usage
+Fx43 offers 3 ways to track files:
+* All files mode: all files are tracked.
+* Ignore file mode: like `.gitignore`, tracks files in respect to nested ignore files.
+* Custom mode: tracks files filtered by custom JavaScript functions.
 
-## API
-```javascript
-const fx43 = require('fx43');
+### All files mode
+```js
+import { startAllFilesModeAsync } from 'fx43-node';
+// ES5: const startAllFilesModeAsync = require('fx43-node').startAllFilesModeAsync;
 
-fx43.start(
-  rootDir: string,               // the project directory
-  ignoreFiles: string[],         // list of ignore files(NOT ignored files, but ignore files like ".gitignore")
-  cacheDir: string,              // where the cache saves
-  ignoreCache: boolean = false,  // ignores cache and forces update? defaults to false
+startAllFilesModeAsync(
+  rootDirectory: string,
+  cacheDirectory: string,
+  ignoreCache: boolean = false,
+): Promise<string[]>;
+```
+
+### Ignore file mode
+```js
+import { startIgnoreFileModeAsync } from 'fx43-node';
+// ES5: const startIgnoreFileModeAsync = require('fx43-node').startIgnoreFileModeAsync;
+
+startIgnoreFileModeAsync(
+  rootDirectory: string,
+  ignoreFiles: string[],   // e.g. ['.myignore', '.gitignore']
+  cacheDirectory: string,
+  ignoreCache: boolean = false,
+): Promise<string[]>;
+```
+
+### Custom mode
+```js
+import { startCustomModeAsync } from 'fx43-node';
+// ES5: const startCustomModeAsync = require('fx43-node').startCustomModeAsync;
+
+startCustomModeAsync(
+  rootDirectory: string,
+  cacheDirectory: string,
+  ignoreCache: boolean = false,
+  // use this to filter files
+  fileFilter: ((fileName: string) => boolean) | null = null,
+  // use this to filter directories
+  dirFilter: ((dirName: string) => boolean) | null = null,
 ): Promise<string[]>;
 ```
 
@@ -49,7 +82,7 @@ Suppose you have some files in a directory named `data`:
     lib.js
 ```
 
-You need to process all changed `.js` files. In this case, you should define an ignore file like `.gitignore`, for example, `.myignore` with following contents:
+You need to process all changed `.js` files. In this case, you can use ignore file mode. Define an ignore file like `.gitignore`, for example, `.myignore` with following contents:
 ```
 # .myignore
 # put this file to the root folder of project
@@ -61,15 +94,10 @@ You need to process all changed `.js` files. In this case, you should define an 
 
 Then call fx43 APIs like this:
 ```javascript
-// Node.js 8+
-const fx43 = require('fx43');
+import { startIgnoreFileModeAsync } from 'fx43-node';
 
 async function printChangedFiles() {
-  const files = await fx43.start(
-    './data',       // source dir: data
-    ['.myignore'],  // ignore file
-    './.cache',     // cache dir: .cache (all selected files' modification time will be saved inside this dir)
-  );
+  const files = await startIgnoreFileModeAsync('./data', ['.myignore'], './.cache');
   console.log(`${files.length} file(s) changed.\n${files}`);
 }
 
@@ -107,5 +135,6 @@ touch ./data/style.css
 node example.js
 # output
 0 file(s) changed.
-
 ```
+
+For more examples, see [examples](https://github.com/mgenware/fx43-node/tree/master/examples).
