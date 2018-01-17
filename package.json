@@ -1,19 +1,19 @@
 {
   "name": "fx43",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Detecting changed files via caching file modification time",
   "main": "dist/lib/main.js",
   "types": "dist/lib/main.d.ts",
   "author": "Mgen (https://www.mgenware.com)",
-  "homepage": "https://github.com/mgenware/fx43",
-  "bugs": "https://github.com/mgenware/fx43/issues",
+  "homepage": "https://github.com/mgenware/fx43-node",
+  "bugs": "https://github.com/mgenware/fx43-node/issues",
   "keywords": [
     "file changes",
     "file system"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mgenware/fx43.git"
+    "url": "https://github.com/mgenware/fx43-node.git"
   },
   "license": "MIT",
   "devDependencies": {
