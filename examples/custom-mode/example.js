@@ -1,8 +1,8 @@
 // Node.js 8+
-const fx43 = require('..');
+const startIgnoreFileModeAsync = require('..').startIgnoreFileModeAsync;
 
 async function printChangedFiles() {
-  const files = await fx43.start('./data', ['.myignore'], './.cache');
+  const files = await startIgnoreFileModeAsync('./data', ['.myignore'], './.cache');
   console.log(`${files.length} file(s) changed.\n${files}`);
 }
 
