@@ -49,7 +49,7 @@
     "mkdirp-promise": "^5.0.1",
     "write": "^1.0.3"
   },
-  "files":[
+  "files": [
     "dist/lib",
     ".gitignore",
     "README.md",
