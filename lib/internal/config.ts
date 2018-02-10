@@ -1,3 +1,3 @@
 export default class Config {
-  public lastMod: string;
+  public lastMod: string = '';
 }
