@@ -34,7 +34,7 @@ Fx43 offers 3 ways to track files:
 ### All files mode
 ```js
 import { startAllFilesModeAsync } from 'fx43';
-// ES5: const startAllFilesModeAsync = require('fx43').startAllFilesModeAsync;
+// Or in Node.js style: const startAllFilesModeAsync = require('fx43').startAllFilesModeAsync;
 
 startAllFilesModeAsync(
   rootDirectory: string,
@@ -46,7 +46,7 @@ startAllFilesModeAsync(
 ### Ignore file mode
 ```js
 import { startIgnoreFileModeAsync } from 'fx43';
-// ES5: const startIgnoreFileModeAsync = require('fx43').startIgnoreFileModeAsync;
+// Or in Node.js style: const startIgnoreFileModeAsync = require('fx43').startIgnoreFileModeAsync;
 
 startIgnoreFileModeAsync(
   rootDirectory: string,
@@ -59,7 +59,7 @@ startIgnoreFileModeAsync(
 ### Custom mode
 ```js
 import { startCustomModeAsync } from 'fx43';
-// ES5: const startCustomModeAsync = require('fx43').startCustomModeAsync;
+// Or in Node.js style: const startCustomModeAsync = require('fx43').startCustomModeAsync;
 
 startCustomModeAsync(
   rootDirectory: string,
